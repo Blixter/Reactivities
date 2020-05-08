@@ -3,3 +3,7 @@ obj
 .vscode
 appsettings.json
 *.db
+.vs/Reactivities/DesignTimeBuild/.dtbcache.v2
+.vs/Reactivities/v16/.suo
+packages-microsoft-prod.deb
+*secrets.json
