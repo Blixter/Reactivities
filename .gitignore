@@ -7,3 +7,4 @@ appsettings.json
 .vs/Reactivities/v16/.suo
 packages-microsoft-prod.deb
 *secrets.json
+.vs
