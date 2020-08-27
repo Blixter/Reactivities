@@ -21,7 +21,7 @@ namespace Application.User
         public class Command : IRequest<User>
         {
             public string DisplayName { get; set; }
-            
+
             public string Username { get; set; }
 
             public string Email { get; set; }
@@ -72,12 +72,12 @@ namespace Application.User
 
                 if (result.Succeeded)
                 {
+
                     return new User
                     {
                         DisplayName = user.DisplayName,
                         Token = _jwtGenerator.CreateToken(user),
                         Username = user.UserName,
-                        Image = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
                     };
                 }
 
