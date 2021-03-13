@@ -1,16 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.SignalR;
 using Application.Activities;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace API.Controllers
 {
+
     public class ActivitiesController : BaseController
     {
+        private readonly IHubContext<ChatHub> _hubContext;
+
+        public ActivitiesController(IHubContext<ChatHub> hubContext)
+        {
+            _hubContext = hubContext;
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<ActivityDto>>> List()
@@ -18,6 +27,11 @@ namespace API.Controllers
             return await Mediator.Send(new List.Query());
         }
 
+        [HttpGet("signal")]
+        public async Task SignalGroup()
+        {
+            await _hubContext.Clients.Group("test").SendAsync("Notify", $"Home page loaded at: {DateTime.Now}");
+        }
 
         [HttpGet("{id}")]
         [Authorize]
