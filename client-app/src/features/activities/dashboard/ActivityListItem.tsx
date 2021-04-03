@@ -5,6 +5,7 @@ import { IActivity } from '../../../app/models/activity';
 import { format } from 'date-fns';
 import ActivityListItemAttendees from './ActivityListItemAttendees';
 
+
 const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
   const host = activity.attendees.filter((x) => x.isHost)[0];
   return (
